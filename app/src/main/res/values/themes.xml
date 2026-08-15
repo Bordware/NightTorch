@@ -1,0 +1,13 @@
+<resources>
+    <!--
+      Compose supplies the real theming (see ui/theme/Theme.kt). This platform theme only
+      governs what the window looks like *before* Compose draws — which is exactly the launch
+      splash. Leaving it on a Light parent is why the app used to flash white on every start.
+
+      windowBackground is a day/night colour, so the flash matches whichever theme the app is
+      about to draw. values-night overrides both the parent and the colour.
+    -->
+    <style name="Theme.NightTorch" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/splash_background</item>
+    </style>
+</resources>

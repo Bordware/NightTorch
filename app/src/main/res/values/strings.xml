@@ -1,0 +1,116 @@
+<resources>
+    <string name="app_name">NightTorch</string>
+    <string name="app_tagline">Volume-key torch that dims at night</string>
+    <string name="app_logo">NightTorch logo</string>
+
+    <!-- Manual torch card, redesigned controls -->
+    <string name="torch_card_tap_to_turn_on">Tap to turn on</string>
+    <string name="torch_card_tap_to_turn_off">Tap to turn off</string>
+    <string name="torch_card_state_on">ON</string>
+    <string name="torch_card_state_off">OFF</string>
+    <string name="torch_card_preset_min">Min</string>
+    <string name="torch_card_preset_max">Max</string>
+
+
+    <!-- Privacy bullets -->
+    <string name="privacy_bullet_network">No internet permission at all — the app physically cannot send data anywhere.</string>
+    <string name="privacy_bullet_accessibility">The accessibility permission only watches for the two volume keys. Screen contents are never read.</string>
+    <string name="privacy_bullet_audio">The volume permission exists solely to undo the single volume step the shortcut causes.</string>
+    <string name="privacy_bullet_vibrate">The vibration permission drives the confirmation buzz, and nothing else.</string>
+    <string name="privacy_card_status">Open source and offline</string>
+
+    <!--
+      Shown to the user in Settings when they enable the service. Written as a genuine
+      explanation of why the app needs this permission and what it does with it, not as
+      marketing copy (docs/architecture.md).
+    -->
+    <string name="accessibility_service_label">NightTorch</string>
+    <string name="accessibility_service_summary">Switch the torch on and off with the volume keys.</string>
+    <string name="accessibility_service_description">NightTorch watches for both volume keys being pressed together, so you can switch the torch on and off without unlocking your phone, finding the right app, or aiming for an on-screen button. That makes the torch usable one-handed, in the dark, and without looking at the screen.\n\nWatching for key presses is the only way an app can react to the volume keys while your phone is locked or another app is open, which is why this permission is needed.\n\nNightTorch does not read the contents of your screen, and it has no internet permission, so it cannot send anything anywhere. Single volume presses keep working exactly as normal.</string>
+
+    <!-- Service status card -->
+    <string name="service_card_title">Volume key shortcut</string>
+    <string name="service_card_enabled">Active</string>
+    <string name="service_card_disabled">Not active</string>
+    <string name="service_card_enabled_body">Press both volume keys together to switch the torch on or off, even when your phone is locked.</string>
+    <string name="service_card_disabled_body">The volume key shortcut needs NightTorch\'s accessibility service switched on. Until then, you can still use the torch from this screen.</string>
+    <string name="service_card_open_settings">Open accessibility settings</string>
+    <string name="service_card_status_icon">Shortcut status</string>
+
+    <!-- Manual torch card -->
+    <string name="torch_card_title">Torch</string>
+    <string name="torch_card_switch">Torch on</string>
+    <string name="torch_card_brightness">Brightness</string>
+    <string name="torch_card_percent">%1$d%%</string>
+    <string name="torch_card_level_of">Level %1$d of %2$d</string>
+    <string name="torch_card_brightness_a11y">Brightness level %1$d of %2$d</string>
+    <string name="torch_card_binary_only">This device does not report variable flash strength, so the torch can only be switched on and off.</string>
+    <string name="torch_card_unsupported">No camera on this device has a flash unit.</string>
+    <string name="torch_card_unavailable">The torch is unavailable because another app is using the camera.</string>
+    <string name="torch_card_error_camera_in_use">Another app is using the camera.</string>
+    <string name="torch_card_error_camera_unavailable">The camera is unavailable right now.</string>
+    <string name="torch_card_error_invalid_level">That brightness level was rejected by the device.</string>
+    <string name="torch_card_error_no_flash">This device has no flash unit.</string>
+
+    <!-- Auto dimming card -->
+    <string name="dimming_card_title">Dim automatically at night</string>
+    <string name="dimming_card_explainer">Keeps the torch gentle at night, so it does not dazzle you when you switch it on in the dark.</string>
+    <string name="dimming_card_binary_only">This device has a single torch brightness, so night and day settings would make no difference.</string>
+    <string name="dimming_card_night_start">Night Start</string>
+    <string name="dimming_card_night_end">Night End</string>
+    <string name="dimming_card_night_brightness">Night brightness</string>
+    <string name="dimming_card_day_brightness">Day brightness</string>
+    <string name="dimming_card_preview_night">Now %1$s → Night → level %2$d of %3$d</string>
+    <string name="dimming_card_preview_day">Now %1$s → Day → level %2$d of %3$d</string>
+    <string name="dimming_card_preview_night_binary">Now %1$s → Night</string>
+    <string name="dimming_card_preview_day_binary">Now %1$s → Day</string>
+    <string name="dimming_card_preview_off">Auto dimming is off, so the torch uses the brightness set above.</string>
+    <string name="dimming_card_same_time_warning">Night starts and ends at the same time, so auto dimming never applies. Set different times to use it.</string>
+
+    <!-- Time picker dialog -->
+    <string name="time_picker_confirm">Set</string>
+    <string name="time_picker_cancel">Cancel</string>
+    <string name="time_picker_night_start_title">Night starts at</string>
+    <string name="time_picker_night_end_title">Night ends at</string>
+
+    <!-- Privacy card -->
+    <string name="privacy_card_title">Privacy</string>
+    <string name="privacy_card_source">View source code and licence</string>
+
+    <string name="source_code_url" translatable="false">https://github.com/bordware/NightTorch</string>
+
+    <!--
+      Onboarding. Written to pre-empt the system's own accessibility warning rather than to
+      talk the user past it: they are about to be told this app wants "full control of your
+      device", and finding that out cold, after a cheerful setup screen, is what makes people
+      back out and leave one-star reviews.
+    -->
+    <string name="onboarding_skip">Skip for now</string>
+    <string name="onboarding_back">Back</string>
+    <string name="onboarding_next">Next</string>
+    <string name="onboarding_finish">Done</string>
+    <string name="onboarding_page_indicator">Step %1$d of %2$d</string>
+
+    <string name="onboarding_welcome_title">A torch you can reach in the dark</string>
+    <string name="onboarding_welcome_body">Press both volume keys together to switch the torch on or off — without unlocking your phone, opening an app, or finding a button on screen.</string>
+    <string name="onboarding_welcome_dimming">At night it comes on dim, so it does not dazzle you at 3am. During the day it comes on bright. You choose the hours.</string>
+    <string name="onboarding_welcome_privacy">No internet permission, so the app cannot send anything anywhere. You can verify that in Android\'s own permission list.</string>
+
+    <string name="onboarding_enable_title">Switching on the shortcut</string>
+    <string name="onboarding_enable_body">Watching for the volume keys while your phone is locked or another app is open needs Android\'s accessibility permission. That is the only way any app can do it.</string>
+    <string name="onboarding_enable_warning_title">Android will warn you</string>
+    <string name="onboarding_enable_warning_body">The next screen says NightTorch wants to "view and control your screen". That warning is the same for every accessibility service and Android cannot tailor it.\n\nNightTorch asks only for key presses. It does not request permission to read screen content, and the code is open if you want to check.</string>
+    <string name="onboarding_enable_action">Open accessibility settings</string>
+    <string name="onboarding_enable_waiting">Waiting for the service to be switched on…</string>
+    <string name="onboarding_enable_done">Shortcut is active</string>
+
+    <string name="onboarding_restricted_title">Toggle greyed out?</string>
+    <string name="onboarding_restricted_body">Android blocks accessibility settings for apps installed outside an app store. To allow it:\n\n1. Open Settings, then Apps, then NightTorch\n2. Tap ⋮ in the top right\n3. Choose "Allow restricted settings"\n\nThen come back and try again.</string>
+
+    <string name="onboarding_schedule_title">When is night?</string>
+    <string name="onboarding_schedule_body">These are already set to sensible defaults. Change them now or later — everything here is on the main screen too.</string>
+
+    <!-- Errors -->
+    <string name="error_no_settings_app">This device has no accessibility settings screen.</string>
+    <string name="error_no_browser">No app available to open web links.</string>
+</resources>

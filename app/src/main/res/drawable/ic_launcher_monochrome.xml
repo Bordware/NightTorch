@@ -1,0 +1,24 @@
+<!--
+  Monochrome layer for themed icons (API 33+). The launcher tints this with the user's
+  wallpaper colours, so it must be a flat silhouette: no gradients, no alpha shading, and
+  no reliance on colour to read.
+
+  Same crescent geometry as the foreground, with the spark kept as a separate solid dot so
+  the mark still reads as "moon plus light" in a single colour.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108"
+    android:tint="#FFFFFF">
+
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillType="evenOdd"
+        android:pathData="M54,54m-19,0a19,19 0,1 1,38 0a19,19 0,1 1,-38 0zM63,49m-17,0a17,17 0,1 0,34 0a17,17 0,1 0,-34 0z" />
+
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M70,42m-4.5,0a4.5,4.5 0,1 1,9 0a4.5,4.5 0,1 1,-9 0" />
+</vector>

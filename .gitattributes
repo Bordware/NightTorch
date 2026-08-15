@@ -1,0 +1,16 @@
+# Normalise to LF in the repository. Without this, committing from Windows with
+# core.autocrlf=true stores gradlew with CRLF, which fails on Linux/macOS and on
+# the GitHub Actions runner.
+* text=auto eol=lf
+
+# Windows-only scripts must keep CRLF.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# The Gradle wrapper script is executed by sh on POSIX; it must stay LF.
+gradlew text eol=lf
+
+*.jar binary
+*.webp binary
+*.png binary
+*.keystore binary

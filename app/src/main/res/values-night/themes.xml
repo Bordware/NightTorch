@@ -1,0 +1,6 @@
+<resources>
+    <!-- Dark parent so system window decorations match before Compose takes over. -->
+    <style name="Theme.NightTorch" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/splash_background</item>
+    </style>
+</resources>

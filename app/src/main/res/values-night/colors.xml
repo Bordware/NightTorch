@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      True black, matching the AMOLED dark scheme the UI itself uses. Anything lighter shows
+      as a grey flash before the app draws.
+    -->
+    <color name="splash_background">#000000</color>
+</resources>

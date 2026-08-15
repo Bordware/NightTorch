@@ -1,0 +1,103 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# A newer push to the same branch makes an in-flight run pointless.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build, test and lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build
+        run: ./gradlew assembleDebug --stacktrace
+
+      - name: Unit tests
+        run: ./gradlew test --stacktrace
+
+      - name: Lint
+        run: ./gradlew lint --stacktrace
+
+      # Instrumented tests are deliberately absent. They need a real torch and, for the
+      # key-event path, physical key presses that cannot be synthesised — `adb shell input
+      # keyevent` does not reach the accessibility filter. An emulator run would pass while
+      # testing nothing, which is worse than not running them.
+
+      - name: Upload reports on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reports
+          path: |
+            app/build/reports/
+            app/build/test-results/
+          retention-days: 7
+
+  privacy:
+    name: Privacy guarantees
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      # The merged manifest, not ours: a dependency can contribute a permission we never
+      # wrote. "No internet permission" is the app's central claim, so it is enforced here
+      # rather than trusted.
+      - name: Merge manifests
+        run: ./gradlew processDebugMainManifest --stacktrace
+
+      - name: Fail if INTERNET or CAMERA is present
+        run: |
+          set -euo pipefail
+          manifest=$(find app/build/intermediates -name AndroidManifest.xml -path '*merged_manifest*' | head -1)
+          if [ -z "$manifest" ]; then
+            echo "::error::Could not locate the merged manifest to check."
+            exit 1
+          fi
+          echo "Checking $manifest"
+          status=0
+          for permission in android.permission.INTERNET android.permission.CAMERA; do
+            # Match the attribute exactly, so a comment mentioning the name does not trip it.
+            if grep -qE "uses-permission[^>]*android:name=\"$permission\"" "$manifest"; then
+              echo "::error::$permission is present in the merged manifest."
+              status=1
+            else
+              echo "OK: $permission absent"
+            fi
+          done
+          exit $status
+
+      - name: List the permissions that are declared
+        run: |
+          manifest=$(find app/build/intermediates -name AndroidManifest.xml -path '*merged_manifest*' | head -1)
+          echo "Declared permissions:"
+          grep -oE 'uses-permission[^>]*android:name="[^"]*"' "$manifest" \
+            | grep -oE 'android:name="[^"]*"' | sed 's/android:name=//;s/"//g' | sort -u | sed 's/^/  /'

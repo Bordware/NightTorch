@@ -1,0 +1,29 @@
+*.iml
+.gradle
+/local.properties
+local.properties
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+
+# Kotlin Gradle plugin session data
+.kotlin/
+
+# IDE config is machine-specific; keep it out of an open-source repo entirely.
+.idea/
+
+# Claude Code local (per-machine) settings; .claude/settings.json is shareable.
+.claude/settings.local.json
+
+# Release signing. Losing these means the app can never be updated on Play under the same
+# listing, so they belong in a password manager — but they must never be committed.
+keystore.properties
+*.jks
+*.keystore
+
+# Working notes kept local. The decisions that matter are written up for humans in
+# docs/architecture.md instead.
+PLAN.md
+CLAUDE.md

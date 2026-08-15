@@ -1,0 +1,40 @@
+Press both volume keys together to switch the torch on or off — without unlocking your phone, opening an app, or hunting for a button on screen.
+
+And at night, it comes on dim.
+
+A torch at full power at 3am is genuinely painful. NightTorch lets you set your own night hours, and inside them the torch comes on at the lowest level your phone supports. Outside them, full brightness. Single volume presses keep changing the volume exactly as they always did.
+
+WHAT IT DOES
+
+• Both volume keys together toggle the torch, with the screen off and the phone locked
+• Dim at night, bright by day, with the hours under your control
+• Brightness that snaps to the levels your device actually has, so every step you can reach is one you can see
+• Puts your volume back afterwards, so the shortcut leaves no trace
+• A short buzz confirms the shortcut fired, for when you are not looking at the screen
+• Material You theming, with a true-black dark mode for OLED screens
+
+NO INTERNET PERMISSION
+
+NightTorch does not request internet access. Not "does not use it" — does not request it, so Android will not permit a network connection at all. You can confirm this yourself in Settings, under Apps, NightTorch, Permissions.
+
+There are no analytics, no crash reporting, no advertising, no account and no server. Your settings stay in private storage on your phone.
+
+The source code is public, and the build fails automatically if internet permission is ever added.
+
+ACCESSIBILITY SERVICE DISCLOSURE
+
+NightTorch uses an accessibility service, and Android will show you a warning about it. That warning is the same for every accessibility service and cannot be changed by the app, so here is what this one actually does.
+
+The service watches for the volume keys being pressed. That is the only way an Android app can react to those keys while your phone is locked or another app is open, and it is the only reason NightTorch uses this permission.
+
+NightTorch requests permission to filter key events only. It does not request permission to read the contents of your screen, it does not collect or store anything the service sees, and it cannot transmit anything because it has no internet permission. Only the volume up and volume down keys are examined; every other key is ignored and passed straight through.
+
+The service is designed for people who need the torch without looking: one-handed operation, use in the dark, and use without fine motor control or precise aim at on-screen targets.
+
+You can read the entire service — it is around 200 lines — at github.com/bordware/NightTorch
+
+REQUIREMENTS
+
+Android 8.0 or later. Adjustable brightness needs Android 13 or later plus hardware that reports more than one flash level; on other devices NightTorch works as a plain on/off torch and tells you so rather than showing a control that does nothing.
+
+Open source under GPL-3.0.

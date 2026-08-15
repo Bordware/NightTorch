@@ -1,0 +1,15 @@
+<resources>
+    <!--
+      API 31+ draws the launch splash itself rather than simply showing windowBackground, and
+      it ignores that attribute for the splash. These are the ones it actually reads, so
+      without them the system falls back to its own default background — the white flash.
+
+      The icon is the adaptive launcher icon, so the splash mark and the home screen mark can
+      never disagree.
+    -->
+    <style name="Theme.NightTorch" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/splash_background</item>
+        <item name="android:windowSplashScreenBackground">@color/splash_background</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+    </style>
+</resources>

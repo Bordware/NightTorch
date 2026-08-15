@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--
+      Filters out devices with no flash unit. Note this is a *feature*, not a permission:
+      CameraManager.setTorchMode and turnOnTorchWithStrengthLevel deliberately sit outside
+      the camera permission model, so this app declares no android.permission.CAMERA. See
+      docs/architecture.md
+      position for no functional gain.
+    -->
+    <uses-feature
+        android:name="android.hardware.camera.flash"
+        android:required="true"
+        tools:ignore="UnnecessaryRequiredFeature" />
+
+    <!--
+      Needed to put the media volume back after the volume-key combo. The first key of the
+      combo has to be passed through to the system — the combo cannot be recognised before
+      deciding that key's fate — so it nudges the volume by one step, and this permission
+      lets that step be undone (docs/architecture.md).
+
+      MODIFY_AUDIO_SETTINGS is a normal, install-time permission: no runtime prompt. It does
+      appear in the app's permission list, so the README must explain it.
+    -->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
+    <!--
+      A short buzz confirming the volume combo fired. The gesture is designed to be used
+      without looking at the screen, so this is often the user's first confirmation that
+      anything happened. Normal install-time permission, no runtime prompt, but it does
+      appear in the permission list — the README table and the in-app privacy card both
+      have to account for it.
+    -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:name=".NightTorchApp"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.NightTorch">
+
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.NightTorch">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--
+          BIND_ACCESSIBILITY_SERVICE ensures only the system can bind this service, which is
+          what stops another app from driving it.
+        -->
+        <service
+            android:name=".service.FlashlightAccessibilityService"
+            android:exported="true"
+            android:label="@string/accessibility_service_label"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+    </application>
+
+</manifest>
